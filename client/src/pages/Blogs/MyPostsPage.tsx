@@ -59,7 +59,7 @@ const MyPosts = () => {
 
   const visibleBlogs = length ? blogs.slice(0, length) : blogs;
   return (
-    <div className="flex flex-col max-w-7xl min-h-screen mx-auto">
+    <div className={`flex flex-col min-h-screen mx-auto ${visibleBlogs.length != 0 && 'max-w-7xl'}`}>
       <h1 className="text-5xl text-gray-600 font-semibold text-center mt-8">
         My Blogs
       </h1>
@@ -78,7 +78,7 @@ const MyPosts = () => {
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 2-cols:grid-cols-2 3-cols:grid-cols-3 gap-9 place-self-center">
+          <div className={`${visibleBlogs.length != 0 && 'grid'} grid-cols-1 2-cols:grid-cols-2 3-cols:grid-cols-3 gap-6 place-self-center`} >
             {visibleBlogs.length > 0 ? (
               visibleBlogs.map((blog) => (
                 <PostCard

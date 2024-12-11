@@ -62,26 +62,26 @@ const BlogList = ({ length }: { length?: number }) => {
 
   const visibleBlogs = length ? blogs.slice(0, length) : blogs;
   return (
-    <div className="min-h-screen justify-self-center w-full ">
+    <div className={`flex flex-col min-h-screen mx-auto ${visibleBlogs.length != 0 && 'max-w-7xl'}`}>
       <h1 className="text-center text-5xl text-gray-600 font-semibold">
         Blogs
       </h1>
-      <div className="flex justify-center items-center mt-12">
-        {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-6 p-3">
+      <div className="flex-grow w-full px-6 py-8">
+      {isLoading ? (
+          <div className="grid grid-cols-1 2-cols:grid-cols-2 3-cols:grid-cols-3 gap-6">
             {Array.from({ length: length || 4 }).map((_, index) => (
               <div key={index} className="p-4 border rounded-md shadow">
-                <Skeleton height={250} width={250} className="mb-4" />
-                <div className="flex flex-row w-full">
+                <Skeleton height={250} width="100%" className="mb-4" />
+                <div className="flex w-full">
                   <Skeleton circle width={20} height={20} />
-                  <Skeleton height={40} width="50%" className="mb-2 " />
+                  <Skeleton height={40} width="50%" className="mb-2" />
                 </div>
                 <Skeleton height={36} width="75%" />
               </div>
             ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 2-cols:grid-cols-2 3-cols:grid-cols-3  gap-6 place-self-center">
+          <div className={`${visibleBlogs.length != 0 && 'grid'} grid-cols-1 2-cols:grid-cols-2 3-cols:grid-cols-3 gap-6 place-self-center`} >
             {visibleBlogs.length > 0 ? (
               visibleBlogs.map((blog) => (
                 <PostCard
